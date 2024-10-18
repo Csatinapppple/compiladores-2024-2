@@ -5,7 +5,7 @@ program
     ;
 
 classDecl
-    : '{' 'class' CLASS_NAME classBody '}'
+    : '{' 'class' IDENTIFICADOR classBody '}'
     ;
 
 classBody
@@ -13,11 +13,11 @@ classBody
     ;
 
 fieldDecl
-    : dataType VAR_NAME ';'
+    : dataType IDENTIFICADOR ';'
     ;
 
 methodDecl
-    : dataType VAR_NAME '(' params? ')' block
+    : dataType IDENTIFICADOR '(' params? ')' block
     ;
 
 params
@@ -25,11 +25,11 @@ params
     ;
 
 param
-    : dataType VAR_NAME
+    : dataType IDENTIFICADOR
     ;
 
 dataType
-    : 'int' | 'bool' | 'void' | CLASS_NAME
+    : 'int' | 'bool' | 'void' | IDENTIFICADOR
     ;
 
 block
@@ -52,7 +52,7 @@ returnStmt
     ;
 
 assignStmt
-    : VAR_NAME '=' expr ';'
+    : IDENTIFICADOR '=' expr ';'
     ;
 
 exprStmt
@@ -64,12 +64,17 @@ expr
     ;
 
 logicalOrExpr
-    : logicalOrExpr '||' logicalAndExpr
+    : logicalOrExpr 'or' logicalAndExpr
     | logicalAndExpr
     ;
 
 logicalAndExpr
-    : logicalAndExpr '&&' equalityExpr
+    : logicalAndExpr 'and' logicalNotExpr
+    | logicalNotExpr
+    ;
+
+logicalNotExpr
+    : logicalNotExpr 'not' equalityExpr
     | equalityExpr
     ;
 
@@ -95,17 +100,15 @@ multiplicativeExpr
 
 primaryExpr
     : '(' expr ')'
-    | VAR_NAME
-    | INT_LITERAL
+    | IDENTIFICADOR
+    | DECIMAL
     | 'True'
     | 'False'
     ;
 
-VAR_NAME: [a-zA-Z_] [a-zA-Z_0-9]* ;
+IDENTIFICADOR: [a-zA-Z_] [a-zA-Z_0-9]* ;
 
-INT_LITERAL: [0-9]+ ;
+DECIMAL: [0-9]+ ;
 
 WS: [ \t\r\n]+ -> skip ;
 
-LINE_COMMENT: '//' ~[\r\n]* -> skip ;
-BLOCK_COMMENT: '/*' .*? '*/' -> skip ;
