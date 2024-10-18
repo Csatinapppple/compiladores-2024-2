@@ -1,7 +1,7 @@
 # compiladores-2024-2
 
 ## Trabalho 2 GA
-#Integrantes
+# Integrantes
 Christian Aguiar Plentz
 Renan Zampeze
 Julian Rafael de Souza
