@@ -65,12 +65,7 @@ logicalOrExpr
     ;
 
 logicalAndExpr
-    : logicalAndExpr 'and' logicalNotExpr
-    | logicalNotExpr
-    ;
-
-logicalNotExpr
-    : logicalNotExpr 'not' equalityExpr
+    : logicalAndExpr 'and' equalityExpr
     | equalityExpr
     ;
 
@@ -98,9 +93,23 @@ primaryExpr
     : '(' expr ')'
     | IDENTIFICADOR
     | DECIMAL
+		| methodCall
     | 'True'
     | 'False'
+		| 'not' primaryExpr
     ;
+
+methodCall
+	: IDENTIFICADOR '(' arguments? ')'
+	;
+
+arguments
+	: argument (',' argument)* 
+	;
+
+argument
+	: expr
+	;
 
 IDENTIFICADOR: [a-zA-Z_] [a-zA-Z_0-9]* ;
 
