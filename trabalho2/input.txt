@@ -1,25 +1,12 @@
 {
-    class MyClass
-
-    // Atributos
-    int myAttribute;
-    bool isActive;
-
-    // Métodos
-    void myMethod(int param1, bool param2) {
-        if (param2 == True) {
-            myAttribute = myAttribute + param1;
-        } else {
-            myAttribute = myAttribute * 2;
+    class MyClass {
+        int myField;
+        bool myMethod(int x) {
+            if (x < 10) {
+                return True;
+            } else {
+                return False;
+            }
         }
-        return;
-    }
-
-    int calculateSum(int a, int b) {
-        return a + b;
-    }
-
-    bool getIsActive() {
-        return isActive;
     }
 }
