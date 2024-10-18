@@ -37,26 +37,22 @@ block
     ;
 
 stmt
-    : conditionalStmt
-    | returnStmt
-    | assignStmt
-    | exprStmt
+    : conditional 
+    | return ';'
+    | assign ';'
+    | expr ';'
     ;
 
-conditionalStmt
+conditional
     : 'if' '(' expr ')' block ('else' block)?
     ;
 
-returnStmt
-    : 'return' expr? ';'
+return
+    : 'return' expr? 
     ;
 
-assignStmt
-    : IDENTIFICADOR '=' expr ';'
-    ;
-
-exprStmt
-    : expr ';'
+assign
+    : IDENTIFICADOR '=' expr 
     ;
 
 expr

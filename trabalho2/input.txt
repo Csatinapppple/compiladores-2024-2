@@ -10,7 +10,7 @@
         }
 
 				void callMethodIfNot(){
-					if (not(myField == 10)){
+					if (not myField == 10){
 						myMethod(10);
 					}
 				}
