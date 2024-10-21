@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>grammar</type>
+	<!--The list of productions.-->
+	<production>
+		<left>E</left>
+		<right>T v F</right>
+	</production>
+	<production>
+		<left>E</left>
+		<right>T</right>
+	</production>
+	<production>
+		<left>T</left>
+		<right>-F</right>
+	</production>
+	<production>
+		<left>T</left>
+		<right>F</right>
+	</production>
+	<production>
+		<left>F</left>
+		<right>(E)</right>
+	</production>
+	<production>
+		<left>F</left>
+		<right>t</right>
+	</production>
+	<production>
+		<left>F</left>
+		<right>f</right>
+	</production>
+</structure>
