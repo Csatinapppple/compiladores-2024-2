@@ -1,2 +1,3 @@
-A seguir eu postei a gramatica usada no grammar.jff e na foto eu postei o resultado
-ao criar o parser usando o teste (-t v f) v t
+A seguir eu postei a gramatica usada no grammar.jff o processo foi bem automatico
+usando o jflap e usando o teste "(-t v f) v t" ele conseguiu depurar e criar a 
+arvore.
