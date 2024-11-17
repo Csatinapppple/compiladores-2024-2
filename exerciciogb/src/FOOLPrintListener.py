@@ -1,5 +1,5 @@
-from FOOLListener import FOOLListener as Listener
-from FOOLParser import FOOLParser as Parser
+from .FOOLListener import FOOLListener as Listener
+from .FOOLParser import FOOLParser as Parser
 
 class FOOLPrintListener(Listener):
     def enterExpr(self, ctx: Parser.ExprContext):
