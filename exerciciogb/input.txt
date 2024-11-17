@@ -6,7 +6,7 @@
 	void main() {
 
 		myField = 0;
-		while (myField < 10){
+		while (myField < 10) {
 			myField = myField + 1;
 		}
 		callMethodIfNot();
