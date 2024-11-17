@@ -1,0 +1,30 @@
+{
+    class MyClass 
+        int myField;
+
+				void main() {
+					
+					myField = 0;
+					while(myField < 10){
+						myField = myField + 1;
+					}
+					callMethodIfNot();
+
+				}
+
+        bool myMethod(int x, bool isTrue) {
+            if (x < 10 or myField == 10 and not isTrue) {
+                return True;
+            } else {
+                return False;
+            }
+        }
+
+				void callMethodIfNot(){
+					if (not myField == 10){
+						myMethod(10);
+					}
+
+				}
+    
+}
