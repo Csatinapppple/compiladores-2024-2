@@ -45,7 +45,6 @@ stmt
 
 conditional
     : 'if' '(' expr ')' block ('else' block)?
-		| 'while' '(' expr ')' block
     ;
 
 return
