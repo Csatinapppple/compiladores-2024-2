@@ -1,0 +1,6 @@
+class MyClass {
+    int x;
+    void main() {
+        x = 10;
+    }
+}
