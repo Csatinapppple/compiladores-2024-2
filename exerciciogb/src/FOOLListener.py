@@ -134,6 +134,24 @@ class FOOLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by FOOLParser#methodCall.
+    def enterMethodCall(self, ctx:FOOLParser.MethodCallContext):
+        pass
+
+    # Exit a parse tree produced by FOOLParser#methodCall.
+    def exitMethodCall(self, ctx:FOOLParser.MethodCallContext):
+        pass
+
+
+    # Enter a parse tree produced by FOOLParser#arguments.
+    def enterArguments(self, ctx:FOOLParser.ArgumentsContext):
+        pass
+
+    # Exit a parse tree produced by FOOLParser#arguments.
+    def exitArguments(self, ctx:FOOLParser.ArgumentsContext):
+        pass
+
+
     # Enter a parse tree produced by FOOLParser#logicalOrExpr.
     def enterLogicalOrExpr(self, ctx:FOOLParser.LogicalOrExprContext):
         pass
@@ -194,33 +212,6 @@ class FOOLListener(ParseTreeListener):
 
     # Exit a parse tree produced by FOOLParser#primaryExpr.
     def exitPrimaryExpr(self, ctx:FOOLParser.PrimaryExprContext):
-        pass
-
-
-    # Enter a parse tree produced by FOOLParser#methodCall.
-    def enterMethodCall(self, ctx:FOOLParser.MethodCallContext):
-        pass
-
-    # Exit a parse tree produced by FOOLParser#methodCall.
-    def exitMethodCall(self, ctx:FOOLParser.MethodCallContext):
-        pass
-
-
-    # Enter a parse tree produced by FOOLParser#arguments.
-    def enterArguments(self, ctx:FOOLParser.ArgumentsContext):
-        pass
-
-    # Exit a parse tree produced by FOOLParser#arguments.
-    def exitArguments(self, ctx:FOOLParser.ArgumentsContext):
-        pass
-
-
-    # Enter a parse tree produced by FOOLParser#argument.
-    def enterArgument(self, ctx:FOOLParser.ArgumentContext):
-        pass
-
-    # Exit a parse tree produced by FOOLParser#argument.
-    def exitArgument(self, ctx:FOOLParser.ArgumentContext):
         pass
 
 

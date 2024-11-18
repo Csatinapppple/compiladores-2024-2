@@ -60,6 +60,14 @@ expr
     : logicalOrExpr
     ;
 
+methodCall
+	: IDENTIFICADOR '(' arguments? ')'
+	;
+
+arguments
+	: expr (',' expr)* 
+	;
+
 logicalOrExpr
     : logicalOrExpr 'or' logicalAndExpr
     | logicalAndExpr
@@ -100,21 +108,10 @@ primaryExpr
 		| 'not' primaryExpr
     ;
 
-methodCall
-	: IDENTIFICADOR '(' arguments? ')'
-	;
-
-arguments
-	: argument (',' argument)* 
-	;
-
-argument
-	: expr
-	;
-
 IDENTIFICADOR: [a-zA-Z_] [a-zA-Z_0-9]* ;
 
 DECIMAL: [0-9]+ ;
 
 WHITESPACE: [ \t\r\n]+ -> skip ;
+
 
