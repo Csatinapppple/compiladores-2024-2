@@ -44,6 +44,15 @@ class FOOLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by FOOLParser#mainDecl.
+    def enterMainDecl(self, ctx:FOOLParser.MainDeclContext):
+        pass
+
+    # Exit a parse tree produced by FOOLParser#mainDecl.
+    def exitMainDecl(self, ctx:FOOLParser.MainDeclContext):
+        pass
+
+
     # Enter a parse tree produced by FOOLParser#methodDecl.
     def enterMethodDecl(self, ctx:FOOLParser.MethodDeclContext):
         pass
