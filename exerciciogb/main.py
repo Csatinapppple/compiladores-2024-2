@@ -5,17 +5,18 @@ from src.FOOLParser import FOOLParser as Parser
 from src.FOOLPrintListener import FOOLPrintListener as PrintListener
 from src.TACGenerator import TACGenerator
 
-input_stream = FileStream("input.txt");
+input_stream = FileStream("input2.txt");
 lexer = Lexer(input_stream)
 stream = CommonTokenStream(lexer)
 parser = Parser(stream)
 tree = parser.program()
 
 
-tac_generator = TACGenerator()
-tac_generator.generate(tree)
+listener = TACGenerator()
+walker = ParseTreeWalker()
+walker.walk(listener, tree)
 
-for line in tac_generator.code:
+for line in listener.code:
     print(line)
 
 """
