@@ -5,7 +5,7 @@ from src.FOOLParser import FOOLParser as Parser
 from src.FOOLPrintListener import FOOLPrintListener as PrintListener
 from src.TACGenerator import TACGenerator
 
-input_stream = FileStream("input2.txt");
+input_stream = FileStream("input.txt");
 lexer = Lexer(input_stream)
 stream = CommonTokenStream(lexer)
 parser = Parser(stream)

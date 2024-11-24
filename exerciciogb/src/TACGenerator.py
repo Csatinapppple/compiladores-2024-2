@@ -21,6 +21,7 @@ class TACGenerator(Listener):
     def enterFieldDecl(self, ctx: Parser.FieldDeclContext):
         """Handle field declarations."""
         field_name = ctx.IDENTIFICADOR().getText()
+        print(field_name)
         self.symbol_table[field_name] = "field"
         self.code.append(f"# Field Declaration: {field_name}")
 
@@ -58,25 +59,54 @@ class TACGenerator(Listener):
         self.code.append(f"{temp} = call {method_name}, {', '.join(args)}")
         return temp
 
+
     def process_expression(self, ctx):
         """Handle expressions and generate TAC."""
-        if ctx.DECIMAL():
-            return ctx.DECIMAL().getText()
-        elif ctx.IDENTIFICADOR():
-            return ctx.IDENTIFICADOR().getText()
-        elif ctx.methodCall():
-            return self.enterMethodCall(ctx.methodCall())
-        elif len(ctx.children) == 3:  # Binary expressions
-            left = self.process_expression(ctx.children[0])
+        if isinstance(ctx, Parser.PrimaryExprContext):  # Primary expressions
+            if ctx.DECIMAL():
+                return ctx.DECIMAL().getText()
+            elif ctx.IDENTIFICADOR():
+                return ctx.IDENTIFICADOR().getText()
+            elif ctx.methodCall():
+                return self.enterMethodCall(ctx.methodCall())
+        elif isinstance(ctx, Parser.AdditiveExprContext):  # Additive expressions
+            left = self.process_expression(ctx.additiveExpr(0))
             operator = ctx.children[1].getText()
-            right = self.process_expression(ctx.children[2])
+            right = self.process_expression(ctx.additiveExpr(1))
             temp = self.new_temp()
             self.code.append(f"{temp} = {left} {operator} {right}")
             return temp
-        elif len(ctx.children) == 2 and ctx.children[0].getText() == "not":  # Unary expressions
+        elif isinstance(ctx, Parser.MultiplicativeExprContext):  # Multiplicative expressions
+            left = self.process_expression(ctx.multiplicativeExpr(0))
+            operator = ctx.children[1].getText()
+            right = self.process_expression(ctx.multiplicativeExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} {operator} {right}")
+            return temp
+        elif isinstance(ctx, Parser.RelationalExprContext):  # Relational expressions
+            left = self.process_expression(ctx.relationalExpr(0))
+            operator = ctx.children[1].getText()
+            right = self.process_expression(ctx.relationalExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} {operator} {right}")
+            return temp
+        elif isinstance(ctx, Parser.LogicalOrExprContext):  # Logical OR
+            left = self.process_expression(ctx.logicalOrExpr(0))
+            right = self.process_expression(ctx.logicalOrExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} or {right}")
+            return temp
+        elif isinstance(ctx, Parser.LogicalAndExprContext):  # Logical AND
+            left = self.process_expression(ctx.logicalAndExpr(0))
+            right = self.process_expression(ctx.logicalAndExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} and {right}")
+            return temp
+        elif isinstance(ctx, Parser.PrimaryExprContext):  # Unary expressions (e.g., not)
             operand = self.process_expression(ctx.children[1])
             temp = self.new_temp()
             self.code.append(f"{temp} = not {operand}")
             return temp
-        return ""
+        else:
+            raise NotImplementedError(f"Unhandled expression context: {type(ctx)}")
 
