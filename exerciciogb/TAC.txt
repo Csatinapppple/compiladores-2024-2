@@ -1,0 +1,9 @@
+myField
+# Field Declaration: myField
+main:
+L1:
+if None == 0 goto L2
+goto L1
+L2:
+t1 = call myMethod
+End main:
