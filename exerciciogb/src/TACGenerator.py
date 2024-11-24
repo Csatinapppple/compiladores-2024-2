@@ -1,8 +1,7 @@
-from antlr4 import *
-from src.FOOLParser import FOOLParser
-from src.FOOLListener import FOOLListener
+from .FOOLListener import FOOLListener as Listener
+from .FOOLParser import FOOLParser as Parser
 
-class TACGenerator(FOOLListener):
+class TACGenerator(Listener):
     def __init__(self):
         self.temp_count = 0  # Counter for temporary variables
         self.label_count = 0  # Counter for labels
@@ -19,21 +18,27 @@ class TACGenerator(FOOLListener):
         self.label_count += 1
         return f"L{self.label_count}"
 
-    def enterMainDecl(self, ctx: FOOLParser.MainDeclContext):
+    def enterFieldDecl(self, ctx: Parser.FieldDeclContext):
+        """Handle field declarations."""
+        field_name = ctx.IDENTIFICADOR().getText()
+        self.symbol_table[field_name] = "field"
+        self.code.append(f"# Field Declaration: {field_name}")
+
+    def enterMainDecl(self, ctx: Parser.MainDeclContext):
         """Handle the start of the main method."""
         self.code.append("main:")
 
-    def exitMainDecl(self, ctx: FOOLParser.MainDeclContext):
+    def exitMainDecl(self, ctx: Parser.MainDeclContext):
         """Handle the end of the main method."""
         self.code.append("End main:")
 
-    def enterAssign(self, ctx: FOOLParser.AssignContext):
+    def enterAssign(self, ctx: Parser.AssignContext):
         """Handle assignments."""
         variable = ctx.IDENTIFICADOR().getText()
         expr_result = self.process_expression(ctx.expr())
         self.code.append(f"{variable} = {expr_result}")
 
-    def enterWhileLoop(self, ctx: FOOLParser.ConditionalContext):
+    def enterWhileLoop(self, ctx: Parser.ConditionalContext):
         """Handle while loops."""
         start_label = self.new_label()
         end_label = self.new_label()
@@ -41,11 +46,11 @@ class TACGenerator(FOOLListener):
         self.code.append(f"{start_label}:")
         condition_result = self.process_expression(ctx.expr())
         self.code.append(f"if {condition_result} == 0 goto {end_label}")
-        # Loop body handled by walker
+        # The loop body will be processed as part of the walker
         self.code.append(f"goto {start_label}")
         self.code.append(f"{end_label}:")
 
-    def enterMethodCall(self, ctx: FOOLParser.MethodCallContext):
+    def enterMethodCall(self, ctx: Parser.MethodCallContext):
         """Handle method calls."""
         method_name = ctx.IDENTIFICADOR().getText()
         args = [self.process_expression(arg) for arg in ctx.arguments().expr()] if ctx.arguments() else []
@@ -74,10 +79,4 @@ class TACGenerator(FOOLListener):
             self.code.append(f"{temp} = not {operand}")
             return temp
         return ""
-
-    def enterFieldDecl(self, ctx: FOOLParser.FieldDeclContext):
-        """Handle field declarations."""
-        field_name = ctx.IDENTIFICADOR().getText()
-        self.symbol_table[field_name] = "field"
-        self.code.append(f"# Field Declaration: {field_name}")
 
