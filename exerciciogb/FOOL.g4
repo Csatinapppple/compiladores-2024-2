@@ -9,12 +9,16 @@ classDecl
     ;
 
 classBody
-    : fieldDecl* methodDecl*
+    : fieldDecl* methodDecl* mainDecl methodDecl*
     ;
 
 fieldDecl
     : dataType IDENTIFICADOR ';'
     ;
+
+mainDecl
+		: 'void' 'main' '(' ')' block
+		;
 
 methodDecl
     : dataType IDENTIFICADOR '(' params? ')' block
