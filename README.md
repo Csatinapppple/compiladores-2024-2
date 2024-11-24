@@ -17,3 +17,7 @@ arvore em formato .png e .svg
 
 instale os binarios de antlr para rodar o programa
 $ pip install antlr4-tools antlr4-python3-runtime
+
+ou somente rode
+$ pip install -r requirements.txt
+para instalar os requerimentos do pip
