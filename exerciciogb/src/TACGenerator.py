@@ -1,86 +1,74 @@
-class TACGenerator:
+from antlr4 import *
+from src.FOOLParser import FOOLParser
+from src.FOOLListener import FOOLListener
+
+class TACGenerator(FOOLListener):
     def __init__(self):
-        self.temp_counter = 0  # Counter for generating temporary variables
-        self.label_counter = 0  # Counter for generating labels
+        self.temp_count = 0  # Counter for temporary variables
         self.code = []  # List to store TAC instructions
+        self.symbol_table = {}  # Symbol table for variable tracking
+        self.current_scope = "global"  # Current scope (e.g., global, method-specific)
 
     def new_temp(self):
-        """Generate a new temporary variable."""
-        self.temp_counter += 1
-        return f"t{self.temp_counter}"
+        """Generates a new temporary variable."""
+        self.temp_count += 1
+        return f"t{self.temp_count}"
 
-    def new_label(self):
-        """Generate a new label."""
-        self.label_counter += 1
-        return f"L{self.label_counter}"
+    def enterMainDecl(self, ctx: FOOLParser.MainDeclContext):
+        """Handles the entry of the main method."""
+        self.code.append("main:")
 
-    def generate_expr(self, expr_ctx):
-        """
-        Generate TAC for an expression.
-        This is a placeholder for now and will depend on the specific context of the expression rule.
-        """
-        if expr_ctx is None:
-            return None
+    def enterAssign(self, ctx: FOOLParser.AssignContext):
+        """Handles assignments."""
+        variable = ctx.IDENTIFICADOR().getText()
+        expr_result = self.process_expression(ctx.expr())
+        self.code.append(f"{variable} = {expr_result}")
 
-        # Simplified logic for expressions (example)
-        if len(expr_ctx.children) == 3:  # Binary expression, e.g., a + b
-            left = expr_ctx.children[0].getText()
-            op = expr_ctx.children[1].getText()
-            right = expr_ctx.children[2].getText()
+    def process_expression(self, ctx):
+        """Processes expressions and generates TAC."""
+        if isinstance(ctx, FOOLParser.PrimaryExprContext):
+            # Handle literals, identifiers, or method calls
+            if ctx.IDENTIFICADOR():
+                return ctx.IDENTIFICADOR().getText()
+            elif ctx.DECIMAL():
+                return ctx.DECIMAL().getText()
+            elif ctx.methodCall():
+                return self.process_method_call(ctx.methodCall())
+            elif ctx.expr():
+                return self.process_expression(ctx.expr())
+        elif isinstance(ctx, FOOLParser.AdditiveExprContext):
+            # Handle addition
+            left = self.process_expression(ctx.additiveExpr(0))
+            right = self.process_expression(ctx.additiveExpr(1))
             temp = self.new_temp()
-            self.code.append(f"{temp} = {left} {op} {right}")
+            self.code.append(f"{temp} = {left} + {right}")
             return temp
+        elif isinstance(ctx, FOOLParser.MultiplicativeExprContext):
+            # Handle multiplication
+            left = self.process_expression(ctx.multiplicativeExpr(0))
+            right = self.process_expression(ctx.multiplicativeExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} * {right}")
+            return temp
+        elif isinstance(ctx, FOOLParser.RelationalExprContext):
+            # Handle relational expressions
+            left = self.process_expression(ctx.relationalExpr(0))
+            right = self.process_expression(ctx.relationalExpr(1))
+            temp = self.new_temp()
+            self.code.append(f"{temp} = {left} < {right}")  # Example for '<'
+            return temp
+        # Extend for other expressions as needed
+        return ""
 
-        elif len(expr_ctx.children) == 1:  # Single variable or literal
-            return expr_ctx.getText()
+    def process_method_call(self, ctx):
+        """Processes a method call and generates TAC."""
+        method_name = ctx.IDENTIFICADOR().getText()
+        arguments = [self.process_expression(arg) for arg in ctx.arguments().expr()] if ctx.arguments() else []
+        temp = self.new_temp()
+        self.code.append(f"{temp} = call {method_name}, {', '.join(arguments)}")
+        return temp
 
-    def generate_assignment(self, assign_ctx):
-        """
-        Generate TAC for an assignment statement.
-        """
-        variable = assign_ctx.IDENTIFICADOR().getText()
-        expr_temp = self.generate_expr(assign_ctx.expr())
-        self.code.append(f"{variable} = {expr_temp}")
-
-    def generate_conditional(self, cond_ctx):
-        """
-        Generate TAC for if-else or while constructs.
-        """
-        # Example for 'if' without 'else'
-        condition_temp = self.generate_expr(cond_ctx.expr())
-        false_label = self.new_label()
-        self.code.append(f"if {condition_temp} == 0 goto {false_label}")
-        
-        # Body of the 'if' block (placeholder logic)
-        self.code.append(f"# Code for 'if' body")
-        
-        self.code.append(f"{false_label}:")
-
-    def generate_while(self, while_ctx):
-        """
-        Generate TAC for a while loop.
-        """
-        start_label = self.new_label()
-        end_label = self.new_label()
-
-        self.code.append(f"{start_label}:")
-        condition_temp = self.generate_expr(while_ctx.expr())
-        self.code.append(f"if {condition_temp} == 0 goto {end_label}")
-        
-        # Body of the 'while' loop (placeholder logic)
-        self.code.append(f"# Code for 'while' body")
-        
-        self.code.append(f"goto {start_label}")
-        self.code.append(f"{end_label}:")
-
-    def generate(self, ctx):
-        """
-        Top-level function to generate TAC for a parse tree context.
-        """
-        # Placeholder: Iterate over child nodes and process based on their type
-        for child in ctx.children:
-            if hasattr(child, 'expr'):  # Example for expression nodes
-                self.generate_expr(child.expr)
-            elif hasattr(child, 'stmt'):  # Example for statement nodes
-                self.generate_assignment(child.stmt)
+    def exitMainDecl(self, ctx: FOOLParser.MainDeclContext):
+        """Handles the exit of the main method."""
+        self.code.append("end main")
 
