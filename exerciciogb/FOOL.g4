@@ -5,7 +5,7 @@ program
     ;
 
 classDecl
-    : '{' 'class' IDENTIFICADOR classBody '}'
+    : RBRACE 'class' IDENTIFICADOR classBody LBRACE
     ;
 
 classBody
@@ -33,7 +33,7 @@ dataType
     ;
 
 block
-    : '{' stmt* '}'
+    : RBRACE stmt* LBRACE
     ;
 
 stmt
@@ -107,6 +107,9 @@ primaryExpr
     | 'False'
 		| 'not' primaryExpr
     ;
+
+RBRACE: '{' ;
+LBRACE: '}' ;
 
 IDENTIFICADOR: [a-zA-Z_] [a-zA-Z_0-9]* ;
 

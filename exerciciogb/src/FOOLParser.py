@@ -30,64 +30,64 @@ def serializedATN():
         10,20,12,20,215,9,20,1,21,1,21,1,21,1,21,1,21,1,21,5,21,223,8,21,
         10,21,12,21,226,9,21,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,
         1,22,1,22,3,22,239,8,22,1,22,0,6,32,34,36,38,40,42,23,0,2,4,6,8,
-        10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,0,2,2,0,8,
-        10,26,26,1,0,19,20,243,0,49,1,0,0,0,2,54,1,0,0,0,4,63,1,0,0,0,6,
-        72,1,0,0,0,8,76,1,0,0,0,10,85,1,0,0,0,12,93,1,0,0,0,14,96,1,0,0,
-        0,16,98,1,0,0,0,18,117,1,0,0,0,20,134,1,0,0,0,22,136,1,0,0,0,24,
-        140,1,0,0,0,26,144,1,0,0,0,28,146,1,0,0,0,30,153,1,0,0,0,32,161,
-        1,0,0,0,34,172,1,0,0,0,36,183,1,0,0,0,38,194,1,0,0,0,40,205,1,0,
-        0,0,42,216,1,0,0,0,44,238,1,0,0,0,46,48,3,2,1,0,47,46,1,0,0,0,48,
-        51,1,0,0,0,49,47,1,0,0,0,49,50,1,0,0,0,50,52,1,0,0,0,51,49,1,0,0,
-        0,52,53,5,0,0,1,53,1,1,0,0,0,54,55,5,1,0,0,55,56,5,2,0,0,56,57,5,
-        26,0,0,57,58,3,4,2,0,58,59,5,3,0,0,59,3,1,0,0,0,60,62,3,6,3,0,61,
-        60,1,0,0,0,62,65,1,0,0,0,63,61,1,0,0,0,63,64,1,0,0,0,64,69,1,0,0,
-        0,65,63,1,0,0,0,66,68,3,8,4,0,67,66,1,0,0,0,68,71,1,0,0,0,69,67,
-        1,0,0,0,69,70,1,0,0,0,70,5,1,0,0,0,71,69,1,0,0,0,72,73,3,14,7,0,
-        73,74,5,26,0,0,74,75,5,4,0,0,75,7,1,0,0,0,76,77,3,14,7,0,77,78,5,
-        26,0,0,78,80,5,5,0,0,79,81,3,10,5,0,80,79,1,0,0,0,80,81,1,0,0,0,
-        81,82,1,0,0,0,82,83,5,6,0,0,83,84,3,16,8,0,84,9,1,0,0,0,85,90,3,
-        12,6,0,86,87,5,7,0,0,87,89,3,12,6,0,88,86,1,0,0,0,89,92,1,0,0,0,
-        90,88,1,0,0,0,90,91,1,0,0,0,91,11,1,0,0,0,92,90,1,0,0,0,93,94,3,
-        14,7,0,94,95,5,26,0,0,95,13,1,0,0,0,96,97,7,0,0,0,97,15,1,0,0,0,
-        98,102,5,1,0,0,99,101,3,18,9,0,100,99,1,0,0,0,101,104,1,0,0,0,102,
-        100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,0,104,102,1,0,0,0,105,
-        106,5,3,0,0,106,17,1,0,0,0,107,118,3,20,10,0,108,109,3,22,11,0,109,
-        110,5,4,0,0,110,118,1,0,0,0,111,112,3,24,12,0,112,113,5,4,0,0,113,
-        118,1,0,0,0,114,115,3,26,13,0,115,116,5,4,0,0,116,118,1,0,0,0,117,
-        107,1,0,0,0,117,108,1,0,0,0,117,111,1,0,0,0,117,114,1,0,0,0,118,
-        19,1,0,0,0,119,120,5,11,0,0,120,121,5,5,0,0,121,122,3,26,13,0,122,
-        123,5,6,0,0,123,126,3,16,8,0,124,125,5,12,0,0,125,127,3,16,8,0,126,
-        124,1,0,0,0,126,127,1,0,0,0,127,135,1,0,0,0,128,129,5,13,0,0,129,
-        130,5,5,0,0,130,131,3,26,13,0,131,132,5,6,0,0,132,133,3,16,8,0,133,
-        135,1,0,0,0,134,119,1,0,0,0,134,128,1,0,0,0,135,21,1,0,0,0,136,138,
-        5,14,0,0,137,139,3,26,13,0,138,137,1,0,0,0,138,139,1,0,0,0,139,23,
-        1,0,0,0,140,141,5,26,0,0,141,142,5,15,0,0,142,143,3,26,13,0,143,
+        10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,0,2,2,0,6,
+        8,26,26,1,0,17,18,243,0,49,1,0,0,0,2,54,1,0,0,0,4,63,1,0,0,0,6,72,
+        1,0,0,0,8,76,1,0,0,0,10,85,1,0,0,0,12,93,1,0,0,0,14,96,1,0,0,0,16,
+        98,1,0,0,0,18,117,1,0,0,0,20,134,1,0,0,0,22,136,1,0,0,0,24,140,1,
+        0,0,0,26,144,1,0,0,0,28,146,1,0,0,0,30,153,1,0,0,0,32,161,1,0,0,
+        0,34,172,1,0,0,0,36,183,1,0,0,0,38,194,1,0,0,0,40,205,1,0,0,0,42,
+        216,1,0,0,0,44,238,1,0,0,0,46,48,3,2,1,0,47,46,1,0,0,0,48,51,1,0,
+        0,0,49,47,1,0,0,0,49,50,1,0,0,0,50,52,1,0,0,0,51,49,1,0,0,0,52,53,
+        5,0,0,1,53,1,1,0,0,0,54,55,5,24,0,0,55,56,5,1,0,0,56,57,5,26,0,0,
+        57,58,3,4,2,0,58,59,5,25,0,0,59,3,1,0,0,0,60,62,3,6,3,0,61,60,1,
+        0,0,0,62,65,1,0,0,0,63,61,1,0,0,0,63,64,1,0,0,0,64,69,1,0,0,0,65,
+        63,1,0,0,0,66,68,3,8,4,0,67,66,1,0,0,0,68,71,1,0,0,0,69,67,1,0,0,
+        0,69,70,1,0,0,0,70,5,1,0,0,0,71,69,1,0,0,0,72,73,3,14,7,0,73,74,
+        5,26,0,0,74,75,5,2,0,0,75,7,1,0,0,0,76,77,3,14,7,0,77,78,5,26,0,
+        0,78,80,5,3,0,0,79,81,3,10,5,0,80,79,1,0,0,0,80,81,1,0,0,0,81,82,
+        1,0,0,0,82,83,5,4,0,0,83,84,3,16,8,0,84,9,1,0,0,0,85,90,3,12,6,0,
+        86,87,5,5,0,0,87,89,3,12,6,0,88,86,1,0,0,0,89,92,1,0,0,0,90,88,1,
+        0,0,0,90,91,1,0,0,0,91,11,1,0,0,0,92,90,1,0,0,0,93,94,3,14,7,0,94,
+        95,5,26,0,0,95,13,1,0,0,0,96,97,7,0,0,0,97,15,1,0,0,0,98,102,5,24,
+        0,0,99,101,3,18,9,0,100,99,1,0,0,0,101,104,1,0,0,0,102,100,1,0,0,
+        0,102,103,1,0,0,0,103,105,1,0,0,0,104,102,1,0,0,0,105,106,5,25,0,
+        0,106,17,1,0,0,0,107,118,3,20,10,0,108,109,3,22,11,0,109,110,5,2,
+        0,0,110,118,1,0,0,0,111,112,3,24,12,0,112,113,5,2,0,0,113,118,1,
+        0,0,0,114,115,3,26,13,0,115,116,5,2,0,0,116,118,1,0,0,0,117,107,
+        1,0,0,0,117,108,1,0,0,0,117,111,1,0,0,0,117,114,1,0,0,0,118,19,1,
+        0,0,0,119,120,5,9,0,0,120,121,5,3,0,0,121,122,3,26,13,0,122,123,
+        5,4,0,0,123,126,3,16,8,0,124,125,5,10,0,0,125,127,3,16,8,0,126,124,
+        1,0,0,0,126,127,1,0,0,0,127,135,1,0,0,0,128,129,5,11,0,0,129,130,
+        5,3,0,0,130,131,3,26,13,0,131,132,5,4,0,0,132,133,3,16,8,0,133,135,
+        1,0,0,0,134,119,1,0,0,0,134,128,1,0,0,0,135,21,1,0,0,0,136,138,5,
+        12,0,0,137,139,3,26,13,0,138,137,1,0,0,0,138,139,1,0,0,0,139,23,
+        1,0,0,0,140,141,5,26,0,0,141,142,5,13,0,0,142,143,3,26,13,0,143,
         25,1,0,0,0,144,145,3,32,16,0,145,27,1,0,0,0,146,147,5,26,0,0,147,
-        149,5,5,0,0,148,150,3,30,15,0,149,148,1,0,0,0,149,150,1,0,0,0,150,
-        151,1,0,0,0,151,152,5,6,0,0,152,29,1,0,0,0,153,158,3,26,13,0,154,
-        155,5,7,0,0,155,157,3,26,13,0,156,154,1,0,0,0,157,160,1,0,0,0,158,
+        149,5,3,0,0,148,150,3,30,15,0,149,148,1,0,0,0,149,150,1,0,0,0,150,
+        151,1,0,0,0,151,152,5,4,0,0,152,29,1,0,0,0,153,158,3,26,13,0,154,
+        155,5,5,0,0,155,157,3,26,13,0,156,154,1,0,0,0,157,160,1,0,0,0,158,
         156,1,0,0,0,158,159,1,0,0,0,159,31,1,0,0,0,160,158,1,0,0,0,161,162,
         6,16,-1,0,162,163,3,34,17,0,163,169,1,0,0,0,164,165,10,2,0,0,165,
-        166,5,16,0,0,166,168,3,34,17,0,167,164,1,0,0,0,168,171,1,0,0,0,169,
+        166,5,14,0,0,166,168,3,34,17,0,167,164,1,0,0,0,168,171,1,0,0,0,169,
         167,1,0,0,0,169,170,1,0,0,0,170,33,1,0,0,0,171,169,1,0,0,0,172,173,
         6,17,-1,0,173,174,3,36,18,0,174,180,1,0,0,0,175,176,10,2,0,0,176,
-        177,5,17,0,0,177,179,3,36,18,0,178,175,1,0,0,0,179,182,1,0,0,0,180,
+        177,5,15,0,0,177,179,3,36,18,0,178,175,1,0,0,0,179,182,1,0,0,0,180,
         178,1,0,0,0,180,181,1,0,0,0,181,35,1,0,0,0,182,180,1,0,0,0,183,184,
         6,18,-1,0,184,185,3,38,19,0,185,191,1,0,0,0,186,187,10,2,0,0,187,
-        188,5,18,0,0,188,190,3,38,19,0,189,186,1,0,0,0,190,193,1,0,0,0,191,
+        188,5,16,0,0,188,190,3,38,19,0,189,186,1,0,0,0,190,193,1,0,0,0,191,
         189,1,0,0,0,191,192,1,0,0,0,192,37,1,0,0,0,193,191,1,0,0,0,194,195,
         6,19,-1,0,195,196,3,40,20,0,196,202,1,0,0,0,197,198,10,2,0,0,198,
         199,7,1,0,0,199,201,3,40,20,0,200,197,1,0,0,0,201,204,1,0,0,0,202,
         200,1,0,0,0,202,203,1,0,0,0,203,39,1,0,0,0,204,202,1,0,0,0,205,206,
         6,20,-1,0,206,207,3,42,21,0,207,213,1,0,0,0,208,209,10,2,0,0,209,
-        210,5,21,0,0,210,212,3,42,21,0,211,208,1,0,0,0,212,215,1,0,0,0,213,
+        210,5,19,0,0,210,212,3,42,21,0,211,208,1,0,0,0,212,215,1,0,0,0,213,
         211,1,0,0,0,213,214,1,0,0,0,214,41,1,0,0,0,215,213,1,0,0,0,216,217,
         6,21,-1,0,217,218,3,44,22,0,218,224,1,0,0,0,219,220,10,2,0,0,220,
-        221,5,22,0,0,221,223,3,44,22,0,222,219,1,0,0,0,223,226,1,0,0,0,224,
+        221,5,20,0,0,221,223,3,44,22,0,222,219,1,0,0,0,223,226,1,0,0,0,224,
         222,1,0,0,0,224,225,1,0,0,0,225,43,1,0,0,0,226,224,1,0,0,0,227,228,
-        5,5,0,0,228,229,3,26,13,0,229,230,5,6,0,0,230,239,1,0,0,0,231,239,
-        5,26,0,0,232,239,5,27,0,0,233,239,3,28,14,0,234,239,5,23,0,0,235,
-        239,5,24,0,0,236,237,5,25,0,0,237,239,3,44,22,0,238,227,1,0,0,0,
+        5,3,0,0,228,229,3,26,13,0,229,230,5,4,0,0,230,239,1,0,0,0,231,239,
+        5,26,0,0,232,239,5,27,0,0,233,239,3,28,14,0,234,239,5,21,0,0,235,
+        239,5,22,0,0,236,237,5,23,0,0,237,239,3,44,22,0,238,227,1,0,0,0,
         238,231,1,0,0,0,238,232,1,0,0,0,238,233,1,0,0,0,238,234,1,0,0,0,
         238,235,1,0,0,0,238,236,1,0,0,0,239,45,1,0,0,0,19,49,63,69,80,90,
         102,117,126,134,138,149,158,169,180,191,202,213,224,238
@@ -103,11 +103,11 @@ class FOOLParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'{'", "'class'", "'}'", "';'", "'('", 
-                     "')'", "','", "'int'", "'bool'", "'void'", "'if'", 
-                     "'else'", "'while'", "'return'", "'='", "'or'", "'and'", 
-                     "'=='", "'<'", "'>'", "'+'", "'*'", "'True'", "'False'", 
-                     "'not'" ]
+    literalNames = [ "<INVALID>", "'class'", "';'", "'('", "')'", "','", 
+                     "'int'", "'bool'", "'void'", "'if'", "'else'", "'while'", 
+                     "'return'", "'='", "'or'", "'and'", "'=='", "'<'", 
+                     "'>'", "'+'", "'*'", "'True'", "'False'", "'not'", 
+                     "'{'", "'}'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -115,8 +115,7 @@ class FOOLParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "IDENTIFICADOR", "DECIMAL", 
-                      "WHITESPACE" ]
+                      "RBRACE", "LBRACE", "IDENTIFICADOR", "DECIMAL", "WHITESPACE" ]
 
     RULE_program = 0
     RULE_classDecl = 1
@@ -172,8 +171,8 @@ class FOOLParser ( Parser ):
     T__20=21
     T__21=22
     T__22=23
-    T__23=24
-    T__24=25
+    RBRACE=24
+    LBRACE=25
     IDENTIFICADOR=26
     DECIMAL=27
     WHITESPACE=28
@@ -228,7 +227,7 @@ class FOOLParser ( Parser ):
             self.state = 49
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==1:
+            while _la==24:
                 self.state = 46
                 self.classDecl()
                 self.state = 51
@@ -253,12 +252,18 @@ class FOOLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def RBRACE(self):
+            return self.getToken(FOOLParser.RBRACE, 0)
+
         def IDENTIFICADOR(self):
             return self.getToken(FOOLParser.IDENTIFICADOR, 0)
 
         def classBody(self):
             return self.getTypedRuleContext(FOOLParser.ClassBodyContext,0)
 
+
+        def LBRACE(self):
+            return self.getToken(FOOLParser.LBRACE, 0)
 
         def getRuleIndex(self):
             return FOOLParser.RULE_classDecl
@@ -281,15 +286,15 @@ class FOOLParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 54
-            self.match(FOOLParser.T__0)
+            self.match(FOOLParser.RBRACE)
             self.state = 55
-            self.match(FOOLParser.T__1)
+            self.match(FOOLParser.T__0)
             self.state = 56
             self.match(FOOLParser.IDENTIFICADOR)
             self.state = 57
             self.classBody()
             self.state = 58
-            self.match(FOOLParser.T__2)
+            self.match(FOOLParser.LBRACE)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -355,7 +360,7 @@ class FOOLParser ( Parser ):
             self.state = 69
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 67110656) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 67109312) != 0):
                 self.state = 66
                 self.methodDecl()
                 self.state = 71
@@ -410,7 +415,7 @@ class FOOLParser ( Parser ):
             self.state = 73
             self.match(FOOLParser.IDENTIFICADOR)
             self.state = 74
-            self.match(FOOLParser.T__3)
+            self.match(FOOLParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -468,17 +473,17 @@ class FOOLParser ( Parser ):
             self.state = 77
             self.match(FOOLParser.IDENTIFICADOR)
             self.state = 78
-            self.match(FOOLParser.T__4)
+            self.match(FOOLParser.T__2)
             self.state = 80
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 67110656) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 67109312) != 0):
                 self.state = 79
                 self.params()
 
 
             self.state = 82
-            self.match(FOOLParser.T__5)
+            self.match(FOOLParser.T__3)
             self.state = 83
             self.block()
         except RecognitionException as re:
@@ -530,9 +535,9 @@ class FOOLParser ( Parser ):
             self.state = 90
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==7:
+            while _la==5:
                 self.state = 86
-                self.match(FOOLParser.T__6)
+                self.match(FOOLParser.T__4)
                 self.state = 87
                 self.param()
                 self.state = 92
@@ -628,7 +633,7 @@ class FOOLParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 96
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 67110656) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 67109312) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -648,6 +653,12 @@ class FOOLParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def RBRACE(self):
+            return self.getToken(FOOLParser.RBRACE, 0)
+
+        def LBRACE(self):
+            return self.getToken(FOOLParser.LBRACE, 0)
 
         def stmt(self, i:int=None):
             if i is None:
@@ -678,11 +689,11 @@ class FOOLParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 98
-            self.match(FOOLParser.T__0)
+            self.match(FOOLParser.RBRACE)
             self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 260073504) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 216013320) != 0):
                 self.state = 99
                 self.stmt()
                 self.state = 104
@@ -690,7 +701,7 @@ class FOOLParser ( Parser ):
                 _la = self._input.LA(1)
 
             self.state = 105
-            self.match(FOOLParser.T__2)
+            self.match(FOOLParser.LBRACE)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -756,7 +767,7 @@ class FOOLParser ( Parser ):
                 self.state = 108
                 self.return_()
                 self.state = 109
-                self.match(FOOLParser.T__3)
+                self.match(FOOLParser.T__1)
                 pass
 
             elif la_ == 3:
@@ -764,7 +775,7 @@ class FOOLParser ( Parser ):
                 self.state = 111
                 self.assign()
                 self.state = 112
-                self.match(FOOLParser.T__3)
+                self.match(FOOLParser.T__1)
                 pass
 
             elif la_ == 4:
@@ -772,7 +783,7 @@ class FOOLParser ( Parser ):
                 self.state = 114
                 self.expr()
                 self.state = 115
-                self.match(FOOLParser.T__3)
+                self.match(FOOLParser.T__1)
                 pass
 
 
@@ -826,39 +837,39 @@ class FOOLParser ( Parser ):
             self.state = 134
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [11]:
+            if token in [9]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 119
-                self.match(FOOLParser.T__10)
+                self.match(FOOLParser.T__8)
                 self.state = 120
-                self.match(FOOLParser.T__4)
+                self.match(FOOLParser.T__2)
                 self.state = 121
                 self.expr()
                 self.state = 122
-                self.match(FOOLParser.T__5)
+                self.match(FOOLParser.T__3)
                 self.state = 123
                 self.block()
                 self.state = 126
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==12:
+                if _la==10:
                     self.state = 124
-                    self.match(FOOLParser.T__11)
+                    self.match(FOOLParser.T__9)
                     self.state = 125
                     self.block()
 
 
                 pass
-            elif token in [13]:
+            elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 128
-                self.match(FOOLParser.T__12)
+                self.match(FOOLParser.T__10)
                 self.state = 129
-                self.match(FOOLParser.T__4)
+                self.match(FOOLParser.T__2)
                 self.state = 130
                 self.expr()
                 self.state = 131
-                self.match(FOOLParser.T__5)
+                self.match(FOOLParser.T__3)
                 self.state = 132
                 self.block()
                 pass
@@ -907,11 +918,11 @@ class FOOLParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 136
-            self.match(FOOLParser.T__13)
+            self.match(FOOLParser.T__11)
             self.state = 138
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 260046880) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 216006664) != 0):
                 self.state = 137
                 self.expr()
 
@@ -962,7 +973,7 @@ class FOOLParser ( Parser ):
             self.state = 140
             self.match(FOOLParser.IDENTIFICADOR)
             self.state = 141
-            self.match(FOOLParser.T__14)
+            self.match(FOOLParser.T__12)
             self.state = 142
             self.expr()
         except RecognitionException as re:
@@ -1054,17 +1065,17 @@ class FOOLParser ( Parser ):
             self.state = 146
             self.match(FOOLParser.IDENTIFICADOR)
             self.state = 147
-            self.match(FOOLParser.T__4)
+            self.match(FOOLParser.T__2)
             self.state = 149
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 260046880) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 216006664) != 0):
                 self.state = 148
                 self.arguments()
 
 
             self.state = 151
-            self.match(FOOLParser.T__5)
+            self.match(FOOLParser.T__3)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1114,9 +1125,9 @@ class FOOLParser ( Parser ):
             self.state = 158
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==7:
+            while _la==5:
                 self.state = 154
-                self.match(FOOLParser.T__6)
+                self.match(FOOLParser.T__4)
                 self.state = 155
                 self.expr()
                 self.state = 160
@@ -1187,7 +1198,7 @@ class FOOLParser ( Parser ):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 165
-                    self.match(FOOLParser.T__15)
+                    self.match(FOOLParser.T__13)
                     self.state = 166
                     self.logicalAndExpr(0) 
                 self.state = 171
@@ -1258,7 +1269,7 @@ class FOOLParser ( Parser ):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 176
-                    self.match(FOOLParser.T__16)
+                    self.match(FOOLParser.T__14)
                     self.state = 177
                     self.equalityExpr(0) 
                 self.state = 182
@@ -1329,7 +1340,7 @@ class FOOLParser ( Parser ):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 187
-                    self.match(FOOLParser.T__17)
+                    self.match(FOOLParser.T__15)
                     self.state = 188
                     self.relationalExpr(0) 
                 self.state = 193
@@ -1402,7 +1413,7 @@ class FOOLParser ( Parser ):
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 198
                     _la = self._input.LA(1)
-                    if not(_la==19 or _la==20):
+                    if not(_la==17 or _la==18):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
@@ -1477,7 +1488,7 @@ class FOOLParser ( Parser ):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 209
-                    self.match(FOOLParser.T__20)
+                    self.match(FOOLParser.T__18)
                     self.state = 210
                     self.multiplicativeExpr(0) 
                 self.state = 215
@@ -1548,7 +1559,7 @@ class FOOLParser ( Parser ):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 220
-                    self.match(FOOLParser.T__21)
+                    self.match(FOOLParser.T__19)
                     self.state = 221
                     self.primaryExpr() 
                 self.state = 226
@@ -1614,11 +1625,11 @@ class FOOLParser ( Parser ):
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 227
-                self.match(FOOLParser.T__4)
+                self.match(FOOLParser.T__2)
                 self.state = 228
                 self.expr()
                 self.state = 229
-                self.match(FOOLParser.T__5)
+                self.match(FOOLParser.T__3)
                 pass
 
             elif la_ == 2:
@@ -1642,19 +1653,19 @@ class FOOLParser ( Parser ):
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 234
-                self.match(FOOLParser.T__22)
+                self.match(FOOLParser.T__20)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
                 self.state = 235
-                self.match(FOOLParser.T__23)
+                self.match(FOOLParser.T__21)
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
                 self.state = 236
-                self.match(FOOLParser.T__24)
+                self.match(FOOLParser.T__22)
                 self.state = 237
                 self.primaryExpr()
                 pass
