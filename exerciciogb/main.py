@@ -13,7 +13,7 @@ input_stream = FileStream("input.txt");
 lexer = Lexer(input_stream)
 stream = CommonTokenStream(lexer)
 parser = Parser(stream)
-tree = parser.expr()
+tree = parser.program()
 
 
 # Walk the tree with the listener
