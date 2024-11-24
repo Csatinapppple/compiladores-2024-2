@@ -25,3 +25,6 @@ replay_pid*
 
 # python virtual environment
 env/
+
+# pycache
+__pycache__/
