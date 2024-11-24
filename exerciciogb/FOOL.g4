@@ -53,7 +53,7 @@ conditional
     ;
 
 return
-    : 'return' expr? # Return
+    : 'return' expr?
     ;
 
 assign

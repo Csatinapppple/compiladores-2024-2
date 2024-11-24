@@ -125,12 +125,12 @@ class FOOLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by FOOLParser#assign.
-    def enterAssign(self, ctx:FOOLParser.AssignContext):
+    # Enter a parse tree produced by FOOLParser#Assignment.
+    def enterAssignment(self, ctx:FOOLParser.AssignmentContext):
         pass
 
-    # Exit a parse tree produced by FOOLParser#assign.
-    def exitAssign(self, ctx:FOOLParser.AssignContext):
+    # Exit a parse tree produced by FOOLParser#Assignment.
+    def exitAssignment(self, ctx:FOOLParser.AssignmentContext):
         pass
 
 

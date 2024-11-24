@@ -1020,24 +1020,35 @@ class FOOLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFICADOR(self):
-            return self.getToken(FOOLParser.IDENTIFICADOR, 0)
-
-        def expr(self):
-            return self.getTypedRuleContext(FOOLParser.ExprContext,0)
-
 
         def getRuleIndex(self):
             return FOOLParser.RULE_assign
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class AssignmentContext(AssignContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a FOOLParser.AssignContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def IDENTIFICADOR(self):
+            return self.getToken(FOOLParser.IDENTIFICADOR, 0)
+        def expr(self):
+            return self.getTypedRuleContext(FOOLParser.ExprContext,0)
+
+
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAssign" ):
-                listener.enterAssign(self)
+            if hasattr( listener, "enterAssignment" ):
+                listener.enterAssignment(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAssign" ):
-                listener.exitAssign(self)
-
+            if hasattr( listener, "exitAssignment" ):
+                listener.exitAssignment(self)
 
 
 
@@ -1046,6 +1057,7 @@ class FOOLParser ( Parser ):
         localctx = FOOLParser.AssignContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_assign)
         try:
+            localctx = FOOLParser.AssignmentContext(self, localctx)
             self.enterOuterAlt(localctx, 1)
             self.state = 155
             self.match(FOOLParser.IDENTIFICADOR)
