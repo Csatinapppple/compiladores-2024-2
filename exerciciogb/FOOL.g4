@@ -53,11 +53,11 @@ conditional
     ;
 
 return
-    : 'return' expr? 
+    : 'return' expr? # Return
     ;
 
 assign
-    : IDENTIFICADOR '=' expr 
+    : IDENTIFICADOR '=' expr # Assignment
     ;
 
 expr
