@@ -21,3 +21,5 @@ $ pip install antlr4-tools antlr4-python3-runtime
 ou somente rode
 $ pip install -r requirements.txt
 para instalar os requerimentos do pip
+
+o input.txt contem a linguagem FOOL e o arquivo TAC.txt contem a saida com acoes semanticas.
