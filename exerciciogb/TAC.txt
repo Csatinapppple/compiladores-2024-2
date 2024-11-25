@@ -7,3 +7,24 @@ goto L1
 L2:
 t1 = call myMethod
 End main:
+# Field Declaration: int myField
+main:
+myField = 0
+L1:
+t1 = myField < 10
+if t1 == False goto L2
+t2 = myField + 1
+myField = t2
+goto L1
+L2:
+t3 = call myMethod
+End main:
+myMethod:
+t4 = myField == 10
+if t4 == False goto L3
+return True
+goto L4
+L3:
+return False
+L4:
+End myMethod:

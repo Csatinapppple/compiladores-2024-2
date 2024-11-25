@@ -58,7 +58,7 @@ def serializedATN():
         0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,120,1,0,0,0,119,117,1,0,
         0,0,120,121,5,26,0,0,121,19,1,0,0,0,122,133,3,22,11,0,123,124,3,
         24,12,0,124,125,5,2,0,0,125,133,1,0,0,0,126,127,3,26,13,0,127,128,
-        5,2,0,0,128,133,1,0,0,0,129,130,3,28,14,0,130,131,5,2,0,0,131,133,
+        5,2,0,0,128,133,1,0,0,0,129,130,3,30,15,0,130,131,5,2,0,0,131,133,
         1,0,0,0,132,122,1,0,0,0,132,123,1,0,0,0,132,126,1,0,0,0,132,129,
         1,0,0,0,133,21,1,0,0,0,134,135,5,10,0,0,135,136,5,5,0,0,136,137,
         3,28,14,0,137,138,5,6,0,0,138,141,3,18,9,0,139,140,5,11,0,0,140,
@@ -770,7 +770,7 @@ class FOOLParser ( Parser ):
             self.state = 117
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 432026656) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 134231040) != 0):
                 self.state = 114
                 self.stmt()
                 self.state = 119
@@ -807,8 +807,8 @@ class FOOLParser ( Parser ):
             return self.getTypedRuleContext(FOOLParser.AssignContext,0)
 
 
-        def expr(self):
-            return self.getTypedRuleContext(FOOLParser.ExprContext,0)
+        def methodCall(self):
+            return self.getTypedRuleContext(FOOLParser.MethodCallContext,0)
 
 
         def getRuleIndex(self):
@@ -858,7 +858,7 @@ class FOOLParser ( Parser ):
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 129
-                self.expr()
+                self.methodCall()
                 self.state = 130
                 self.match(FOOLParser.T__1)
                 pass

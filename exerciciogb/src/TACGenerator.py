@@ -37,48 +37,92 @@ class TACGenerator:
     def enterFieldDecl(self, ctx):
         """Handle field declarations."""
         field_name = ctx.IDENTIFICADOR().getText()
-        self.code.append(f"# Field Declaration: {field_name}")
+        self.code.append(f"# Field Declaration: {ctx.dataType().getText()} {field_name}")
 
     def enterMainDecl(self, ctx):
         """Handle the main method declaration."""
         self.code.append("main:")
+        self.handleBlock(ctx.block())
+
 
     def exitMainDecl(self, ctx):
         """Handle the end of the main method."""
         self.code.append("End main:")
+    
+    def enterMethodDecl(self, ctx):
+        """Handle the method declaration."""
+        self.code.append(f"{ctx.IDENTIFICADOR().getText()}:")
+        self.handleBlock(ctx.block())
 
-    def enterAssign(self, ctx):
+
+    def exitMethodDecl(self, ctx):
+        """Handle the end of the method."""
+        self.code.append(f"End {ctx.IDENTIFICADOR().getText()}:")
+
+    def handleBlock(self, ctx):
+        for child in ctx.getChildren():
+            if child.getText() != "{" and child.getText() != "}":
+                self.process_stmt(child.children[0])
+
+    def process_stmt(self, ctx):
+        """Handle the statements in the grammar."""
+
+        # Handle assignment statements (e.g., x = expr)
+        if isinstance(ctx, Parser.AssignContext):
+            self.handleAssign(ctx)
+
+        # Handle conditional statements (e.g., if or while)
+        elif isinstance(ctx, Parser.ConditionalContext):
+            self.handleConditional(ctx)
+        # Handle return statements (e.g., return expr)
+        elif isinstance(ctx, Parser.ReturnContext):
+            self.handleReturn(ctx)
+
+        # Handle method calls (e.g., myMethod())
+        elif isinstance(ctx, Parser.MethodCallContext):
+            self.handleMethodCall(ctx)
+        
+        else:
+            print(ctx.getText())
+            print(f"Unhandled statement context: {type(ctx)}")
+
+
+    def handleAssign(self, ctx):
         """Handle assignment statements."""
         var_name = ctx.IDENTIFICADOR().getText()
         expr_result = self.process_expression(ctx.expr())
         self.code.append(f"{var_name} = {expr_result}")
+    
+    def handleReturn(self, ctx):
+        """Handle return statements."""
+        return_value = self.process_expression(ctx.expr()) if ctx.expr() else "None"
+        self.code.append(f"return {return_value}")
 
-
-    def enterConditional(self, ctx):
+    def handleConditional(self, ctx):
         """Handle conditionals, including 'if' and 'while'."""
         if ctx.children[0].getText() == 'while':
-            # Start and end labels for the loop
             start_label = self.new_label()
             end_label = self.new_label()
-
-            # Add the start label
             self.code.append(f"{start_label}:")
-
-            # Process the condition expression for the while loop
             condition = self.process_expression(ctx.expr())
-            self.code.append(f"if {condition} == 0 goto {end_label}")  # Jump if condition is false
-
-            # Process the block of the loop
-            block = ctx.block()
-            for stmt in block:  # Iterate over each statement in the block
-                ParseTreeWalker.DEFAULT.walk(self, stmt)  # Walk through each statement
-
-            # Jump back to the start of the loop
+            self.code.append(f"if {condition} == False goto {end_label}")
+            self.handleBlock(ctx.block(0))
             self.code.append(f"goto {start_label}")
-            self.code.append(f"{end_label}:")  # Add the end label
+            self.code.append(f"{end_label}:")
+        elif ctx.children[0].getText() == 'if':
+            condition = self.process_expression(ctx.expr())
+            else_label = self.new_label()
+            end_label = self.new_label()
+            self.code.append(f"if {condition} == False goto {else_label}")
+            self.handleBlock(ctx.block(0))
+            self.code.append(f"goto {end_label}")
+            self.code.append(f"{else_label}:")
+            if len(ctx.block()) > 1:
+                self.handleBlock(ctx.block(1))
+            self.code.append(f"{end_label}:")
 
 
-    def enterMethodCall(self, ctx):
+    def handleMethodCall(self, ctx):
         """Handle method calls."""
         method_name = ctx.IDENTIFICADOR().getText()
         args = [self.process_expression(arg) for arg in ctx.arguments().expr()] if ctx.arguments() else []
@@ -98,13 +142,19 @@ class TACGenerator:
             elif ctx.IDENTIFICADOR():
                 return ctx.IDENTIFICADOR().getText()
             elif ctx.methodCall():
-                return self.enterMethodCall(ctx.methodCall())
+                return self.handleMethodCall(ctx.methodCall())
             elif len(ctx.children) == 2 and ctx.children[0].getText() == 'not':  # Unary 'not' expression (e.g., not a)
                 operator = ctx.children[0].getText()
                 operand = self.process_expression(ctx.children[1])
                 temp = self.new_temp()
                 self.code.append(f"{temp} = {operator} {operand}")
                 return temp
+            elif ctx.children[0].getText() == '(' and ctx.children[-1].getText() == ')':  # Parenthesized expression
+                return self.process_expression(ctx.children[1])  # Process the inner expression
+            elif ctx.children[0].getText() == 'True':  # Boolean literal `True`
+                return "True"  # Represent `True` as `1` in TAC
+            elif ctx.children[0].getText() == 'False':  # Boolean literal `False`
+                return "False"  # Represent `False` as `0` in TAC
 
         # Handling Additive Expressions (e.g., a + b)
         elif isinstance(ctx, Parser.AdditiveExprContext):

@@ -44,7 +44,7 @@ stmt
     : conditional 
     | return ';'
     | assign ';'
-    | expr ';'
+		| methodCall ';'
     ;
 
 conditional
