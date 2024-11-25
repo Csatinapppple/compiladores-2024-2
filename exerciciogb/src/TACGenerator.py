@@ -2,167 +2,192 @@ from antlr4 import ParseTreeWalker
 from .FOOLListener import FOOLListener as Listener
 from .FOOLParser import FOOLParser as Parser
 
-
-class TACGenerator(Listener):
+class TACGenerator:
     def __init__(self):
-        self.temp_count = 0  # Counter for temporary variables
-        self.label_count = 0  # Counter for labels
-        self.code = []  # List to store TAC instructions
-        self.symbol_table = {}  # Symbol table to track variables and fields
+        self.code = []
+        self.temp_counter = 0
+        self.label_counter = 0
 
     def new_temp(self):
         """Generate a new temporary variable."""
-        self.temp_count += 1
-        return f"t{self.temp_count}"
+        self.temp_counter += 1
+        return f"t{self.temp_counter}"
 
     def new_label(self):
         """Generate a new label."""
-        self.label_count += 1
-        return f"L{self.label_count}"
+        self.label_counter += 1
+        return f"L{self.label_counter}"
 
-    def enterFieldDecl(self, ctx: Parser.FieldDeclContext):
+    def enterEveryRule(self, ctx):
+        """Called when entering any rule."""
+        pass
+
+    def exitEveryRule(self, ctx):
+        """Called when exiting any rule."""
+        pass
+
+    def visitTerminal(self, node):
+        """Called when visiting a terminal node."""
+        pass
+
+    def visitErrorNode(self, node):
+        """Called when visiting an error node."""
+        pass
+
+    def enterFieldDecl(self, ctx):
         """Handle field declarations."""
         field_name = ctx.IDENTIFICADOR().getText()
-        print(field_name)
-        self.symbol_table[field_name] = "field"
         self.code.append(f"# Field Declaration: {field_name}")
 
-    def enterMainDecl(self, ctx: Parser.MainDeclContext):
-        """Handle the start of the main method."""
+    def enterMainDecl(self, ctx):
+        """Handle the main method declaration."""
         self.code.append("main:")
 
-    def exitMainDecl(self, ctx: Parser.MainDeclContext):
+    def exitMainDecl(self, ctx):
         """Handle the end of the main method."""
         self.code.append("End main:")
 
-    def enterAssign(self, ctx: Parser.AssignContext):
-        """Handle assignments."""
-        variable = ctx.IDENTIFICADOR().getText()
+    def enterAssign(self, ctx):
+        """Handle assignment statements."""
+        var_name = ctx.IDENTIFICADOR().getText()
         expr_result = self.process_expression(ctx.expr())
-        self.code.append(f"{variable} = {expr_result}")
-    
-    def enterConditional(self, ctx: Parser.ConditionalContext):
+        self.code.append(f"{var_name} = {expr_result}")
+
+
+    def enterConditional(self, ctx):
         """Handle conditionals, including 'if' and 'while'."""
         if ctx.children[0].getText() == 'while':
-            # Handle the 'while' loop
-            start_label = self.new_label()  # Create a start label
-            end_label = self.new_label()    # Create an end label
+            # Start and end labels for the loop
+            start_label = self.new_label()
+            end_label = self.new_label()
 
-            self.code.append(f"{start_label}:")  # Label for the start of the loop
-            
+            # Add the start label
+            self.code.append(f"{start_label}:")
+
             # Process the condition expression for the while loop
             condition = self.process_expression(ctx.expr())
-            self.code.append(f"if {condition} == 0 goto {end_label}")  # Condition check
-            
-            # Process the body of the loop (block of statements)
+            self.code.append(f"if {condition} == 0 goto {end_label}")  # Jump if condition is false
+
+            # Process the block of the loop
             block = ctx.block()
             for stmt in block:  # Iterate over each statement in the block
-                ParseTreeWalker.DEFAULT.walk(self, stmt)  # Walk through each statement in the block
+                ParseTreeWalker.DEFAULT.walk(self, stmt)  # Walk through each statement
 
-            # Generate a jump back to the start of the loop
+            # Jump back to the start of the loop
             self.code.append(f"goto {start_label}")
-            self.code.append(f"{end_label}:")  # Label for the end of the loop
+            self.code.append(f"{end_label}:")  # Add the end label
 
-    def enterWhileLoop(self, ctx: Parser.ConditionalContext):
-        """Handle while loops."""
-        start_label = self.new_label()
-        end_label = self.new_label()
 
-        self.code.append(f"{start_label}:")
-        condition_result = self.process_expression(ctx.expr())
-        self.code.append(f"if {condition_result} == 0 goto {end_label}")
-        # The loop body will be processed as part of the walker
-        self.code.append(f"goto {start_label}")
-        self.code.append(f"{end_label}:")
-
-    def enterMethodCall(self, ctx: Parser.MethodCallContext):
+    def enterMethodCall(self, ctx):
         """Handle method calls."""
         method_name = ctx.IDENTIFICADOR().getText()
         args = [self.process_expression(arg) for arg in ctx.arguments().expr()] if ctx.arguments() else []
 
         temp = self.new_temp()
-
-        if not args:  # No arguments
+        if not args:
             self.code.append(f"{temp} = call {method_name}")
-        else:  # With arguments
+        else:
             self.code.append(f"{temp} = call {method_name}, {', '.join(args)}")
-
         return temp
 
     def process_expression(self, ctx):
-        """Handle expressions and generate TAC."""
-        if ctx is None:
-            raise ValueError("Received None context in process_expression")
-
-        if isinstance(ctx, Parser.PrimaryExprContext):  # Primary expressions
+        # Handling Primary Expressions (e.g., literals or identifiers)
+        if isinstance(ctx, Parser.PrimaryExprContext):
             if ctx.DECIMAL():
                 return ctx.DECIMAL().getText()
             elif ctx.IDENTIFICADOR():
                 return ctx.IDENTIFICADOR().getText()
             elif ctx.methodCall():
                 return self.enterMethodCall(ctx.methodCall())
-            elif len(ctx.children) == 2 and ctx.children[0].getText() == "not":  # Unary 'not'
+            elif len(ctx.children) == 2 and ctx.children[0].getText() == 'not':  # Unary 'not' expression (e.g., not a)
+                operator = ctx.children[0].getText()
                 operand = self.process_expression(ctx.children[1])
                 temp = self.new_temp()
-                self.code.append(f"{temp} = not {operand}")
+                self.code.append(f"{temp} = {operator} {operand}")
                 return temp
-        elif isinstance(ctx, Parser.AdditiveExprContext):  # Additive expressions
-            if len(ctx.children) >= 3:
-                left = self.process_expression(ctx.children[0])
-                operator = ctx.children[1].getText()
-                right = self.process_expression(ctx.children[2])
+
+        # Handling Additive Expressions (e.g., a + b)
+        elif isinstance(ctx, Parser.AdditiveExprContext):
+            if len(ctx.children) == 3:  # Binary addition (e.g., a + b)
+                left = self.process_expression(ctx.children[0])  # Left operand
+                operator = ctx.children[1].getText()  # Additive operator (+)
+                right = self.process_expression(ctx.children[2])  # Right operand
                 temp = self.new_temp()
                 self.code.append(f"{temp} = {left} {operator} {right}")
                 return temp
-        elif isinstance(ctx, Parser.MultiplicativeExprContext):  # Multiplicative expressions
-            if len(ctx.children) >= 3:
-                left = self.process_expression(ctx.children[0])
-                operator = ctx.children[1].getText()
-                right = self.process_expression(ctx.children[2])
-                temp = self.new_temp()
-                self.code.append(f"{temp} = {left} {operator} {right}")
-                return temp
-        elif isinstance(ctx, Parser.RelationalExprContext):  # Relational expressions
-            if len(ctx.children) >= 3:
-                left = self.process_expression(ctx.children[0])
-                operator = ctx.children[1].getText()
-                right = self.process_expression(ctx.children[2])
-                temp = self.new_temp()
-                self.code.append(f"{temp} = {left} {operator} {right}")
-                return temp
-        elif isinstance(ctx, Parser.EqualityExprContext):  # Equality expressions
-            if len(ctx.children) >= 3:
-                left = self.process_expression(ctx.children[0])
-                operator = ctx.children[1].getText()  # Should be '=='
-                right = self.process_expression(ctx.children[2])
-                temp = self.new_temp()
-                self.code.append(f"{temp} = {left} {operator} {right}")
-                return temp
-        elif isinstance(ctx, Parser.LogicalOrExprContext):  # Logical OR
-            if len(ctx.children) == 3:  # Binary OR expression
-                left = self.process_expression(ctx.children[0])
-                operator = "or"
-                right = self.process_expression(ctx.children[2])
-                temp = self.new_temp()
-                self.code.append(f"{temp} = {left} {operator} {right}")
-                return temp
-            elif len(ctx.children) == 1:  # Single child: delegate to logicalAndExpr
+            elif len(ctx.children) == 1:  # Single child case (delegate to next expression rule)
                 return self.process_expression(ctx.children[0])
-        elif isinstance(ctx, Parser.LogicalAndExprContext):  # Logical AND
-            if len(ctx.children) == 3:  # Binary AND expression
+
+        # Handling Multiplicative Expressions (e.g., a * b)
+        elif isinstance(ctx, Parser.MultiplicativeExprContext):
+            if len(ctx.children) == 3:  # Binary multiplication (e.g., a * b)
+                left = self.process_expression(ctx.children[0])  # Left operand
+                operator = ctx.children[1].getText()  # Multiplicative operator (*)
+                right = self.process_expression(ctx.children[2])  # Right operand
+                temp = self.new_temp()
+                self.code.append(f"{temp} = {left} {operator} {right}")
+                return temp
+            elif len(ctx.children) == 1:  # Single child case (delegate to next expression rule)
+                return self.process_expression(ctx.children[0])
+
+        # Handling Equality Expressions (e.g., a == b)
+        elif isinstance(ctx, Parser.EqualityExprContext):
+            if len(ctx.children) == 3:  # Binary equality (e.g., a == b)
                 left = self.process_expression(ctx.children[0])
-                operator = "and"
+                operator = ctx.children[1].getText()  # '==' or '!='
                 right = self.process_expression(ctx.children[2])
                 temp = self.new_temp()
                 self.code.append(f"{temp} = {left} {operator} {right}")
                 return temp
-            elif len(ctx.children) == 1:  # Single child: delegate to next rule
+            elif len(ctx.children) == 1:  # Single child case (e.g., for nested expressions)
                 return self.process_expression(ctx.children[0])
-        elif isinstance(ctx, Parser.ExprContext):  # Top-level expr rule
+
+        # Handling Relational Expressions (e.g., a < b)
+        elif isinstance(ctx, Parser.RelationalExprContext):
+            if len(ctx.children) == 3:  # Binary relational expressions (e.g., a < b)
+                left = self.process_expression(ctx.children[0])
+                operator = ctx.children[1].getText()  # Relational operator (<, >, <=, >=)
+                right = self.process_expression(ctx.children[2])
+                temp = self.new_temp()
+                self.code.append(f"{temp} = {left} {operator} {right}")
+                return temp
+            elif len(ctx.children) == 1:  # Single child case (e.g., for nested expressions)
+                return self.process_expression(ctx.children[0])
+
+        # Handling Logical OR Expressions (e.g., a or b)
+        elif isinstance(ctx, Parser.LogicalOrExprContext):
+            if len(ctx.children) == 3:  # Binary OR (e.g., a or b)
+                left = self.process_expression(ctx.children[0])
+                right = self.process_expression(ctx.children[2])
+                temp = self.new_temp()
+                self.code.append(f"{temp} = {left} or {right}")
+                return temp
+            elif len(ctx.children) == 1:  # Single child case (delegate to LogicalAndExpr)
+                return self.process_expression(ctx.children[0])
+
+        # Handling Logical AND Expressions (e.g., a and b)
+        elif isinstance(ctx, Parser.LogicalAndExprContext):
+            if len(ctx.children) == 3:  # Binary AND (e.g., a and b)
+                left = self.process_expression(ctx.children[0])
+                right = self.process_expression(ctx.children[2])
+                temp = self.new_temp()
+                self.code.append(f"{temp} = {left} and {right}")
+                return temp
+            elif len(ctx.children) == 1:  # Single child case (delegate to next rule)
+                return self.process_expression(ctx.children[0])
+
+        # Handling Top-level expr rule (e.g., combination of all above)
+        elif isinstance(ctx, Parser.ExprContext):
             if ctx.children:
                 return self.process_expression(ctx.children[0])
+
         else:
             # Debugging information for unexpected contexts
-            print(f"Unhandled context in process_expression: {type(ctx)}, children: {ctx.children if ctx.children else 'None'}")
+            print(f"Unhandled context in process_expression: {type(ctx)} with children {ctx.children if ctx.children else 'None'}")
             raise NotImplementedError(f"Unhandled expression context: {type(ctx)}")
+
+
+    def get_code(self):
+        """Return the generated code."""
+        return "\n".join(self.code)
 
