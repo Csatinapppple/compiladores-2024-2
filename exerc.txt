@@ -1,0 +1,10 @@
+Lexema	Classe
+if	    rword
+x	      id
+*				op
+x				id
+==			op
+y				id
+return	rword
+true		rword
+;				punct
